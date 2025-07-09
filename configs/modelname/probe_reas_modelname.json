@@ -1,0 +1,17 @@
+{
+"program": "~/steering_hierarchy/probe.py",
+"args": {
+"ndevices": 1,
+"per_device_train_batch_size": 1,
+"gradient_accumulation_steps": 16,
+"num_steps": 256,
+"lr": 1e-5,
+"accept_dsets": "sni_pe",
+"reject_dsets": [
+"sni_sa,sni_tld,sni_s,sni_tc,sni_sc"
+],
+"num_prompts_per_dset": 2048,
+"model": ["mistral", "granite"],
+"system_prompt": true
+}
+}
