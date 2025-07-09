@@ -1,2 +1,2 @@
-# llm-scoping
+# llm scoping
 llm scoping source code
