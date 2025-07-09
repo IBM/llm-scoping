@@ -1,3 +1,33 @@
+# Llm-scoping
+This repo includes source code to reproduce llm scoping results on our paper:
+[Reducing the Scope of Language Models](https://arxiv.org/abs/2410.21597)
+we builds below scripts for different types of llm-scoping training/ few-shot prompting methods:
+1. CB/ SFT2CB : circuit_breakers_hf_tok.py 
+2. SFT : sft_hf_tok.py
+3. DPO : dpo.py
+4. probe : probe.py
+5. simple classifier and head : roberta_probe.py
+6. llm judge by few-shot two side examples prompting : llm_judge_twoside_fewshot.py
+
+A few configs example: `configs/modelname`
+Cite our work:
+```
+@misc{2410.21597,
+Author = {David Yunis and Siyu Huo and Chulaka Gunasekara and Danish Contractor},
+Title = {Reducing the Scope of Language Models},
+Year = {2024},
+Eprint = {arXiv:2410.21597},
+}
+
+```
+Contact us:
+```
+dyunis@ttic.edu
+siyu.huo@ibm.com
+chulaka.gunasekara@ibm.com
+danish.contractor@ibm.com
+```
+
 ## Installation
 
 ```bash
@@ -57,9 +87,11 @@ export GENAI_KEY=[BAM API key]
 ```
 
 Training, see arguments with `python cb.py -h`:
+
 ```bash
 python [circuit_breakers_hf_tok|sft_hf_tok|dpo|probe|roberta_probe].py --model 'granite' --savedir [path/to/save] --lora_init [previous lora to init from, for example for layer CB on top of SFT] --accept_dsets sni_sa,sni_tld --reject_dsets sni_s,sni_tc,sni_sc,sni_dg --num_prompts_per_dset 2048 --system_prompt --num_steps 128
 ```
+
 Datasets can be chosen from `sni_sa, sni_tld, sni_s, sni_tc, sni_sc, sni_dg, sni_pe, sni_qa, gsm8k, alpaca`
 where the SNI abbreviations mean `sentiment analysis, toxic language detection, summarization, text completion, story composition, dialogue generation, program execution` and `question answering` respectively
 This creates a directory at [path/to/save] with two files:
@@ -97,6 +129,7 @@ Cosine similarity plots, see arguments with `python rep_cosines.py -h`
 python rep_cosines.py --savedir [path to savedir of trained run] --system_prompt --dataset sni_s --num_prompts 256 --evaldirs [space separated list of savedirs from training script]
 ```
 This saves plots to [savedir]
+
 
 
 
